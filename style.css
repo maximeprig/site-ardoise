@@ -193,6 +193,11 @@ a:hover .roll::after, button:hover .roll::after { transform: none; }
 .nav-links { display: flex; gap: clamp(1.25rem, 3vw, 2.75rem); }
 .nav-links a { padding: 0.75rem 0; text-transform: uppercase; font-size: 0.875rem; }
 .nav-right { display: flex; align-items: center; gap: 1rem; }
+.lang { display: flex; align-items: center; gap: 0.375rem; font: 500 0.8125rem var(--font-sans); }
+.lang-sep { opacity: .4; }
+.lang a { opacity: .6; transition: opacity .3s var(--ease); }
+.lang a:hover, .lang a:focus-visible { opacity: 1; }
+.lang-cur { opacity: 1; }
 .burger { display: none; width: 2.75rem; height: 2.75rem; position: relative; border: 1px solid currentColor; border-radius: 3px; }
 .burger i { position: absolute; left: 0.75rem; right: 0.75rem; height: 1px; background: currentColor; transition: transform .5s var(--ease-out), top .5s var(--ease-out); }
 .burger i:nth-child(1) { top: 1.125rem; }
@@ -368,6 +373,18 @@ body.ready .wm-line .ch, .foot-mark.in .ch { animation-play-state: running; }
 .card:hover .card-time em { transform: translateX(0.625rem); }
 .card-text { margin-top: 1.25rem; color: var(--color-espresso); transition: color .5s; }
 .card:hover .card-text { color: var(--color-linen); }
+
+/* « À savoir » : second bloc de cartes (accessibilité, vélos), même langage visuel que .cards */
+.cards-label { margin-top: clamp(2.5rem, 6vw, 5rem); margin-bottom: 1rem; }
+.cards-duo { grid-template-columns: repeat(2, 1fr); margin-top: 0; }
+.card-ico {
+  position: absolute; top: 1.25rem; right: 1.75rem; width: 2.625rem; height: 2.625rem;
+  fill: none; stroke: currentColor; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round;
+  color: var(--color-espresso); transition: color .5s;
+}
+.card-ico * { vector-effect: non-scaling-stroke; } /* trait de 1 px à toutes les tailles, comme les filets du site */
+.card:hover .card-ico { color: var(--color-saffron-glow); }
+@media (max-width: 380px) { .card-ico { width: 2rem; height: 2rem; } } /* très petits téléphones : l'icône ne touche jamais le titre */
 
 /* ==========================================================================
    LA CARTE

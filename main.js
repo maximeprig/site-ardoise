@@ -13,16 +13,54 @@
   root.classList.remove('no-js');
 
   /* ------------------------------------------------------------------
+     Langue — FR par défaut, EN si la page est <html lang="en">
+     (utilisé par index-en.html + menu-data.en.js ; voir aussi plus bas
+     pour toutes les chaînes traduites : jours, horaires, menu burger)
+     ------------------------------------------------------------------ */
+  const LANG = document.documentElement.lang === 'en' ? 'en' : 'fr';
+  const I18N = {
+    fr: {
+      days: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
+      today: 'Aujourd’hui',
+      menuOpen: 'Ouvrir le menu',
+      menuClose: 'Fermer le menu',
+      axisHour: (h) => h + 'h',
+      time: (h, mm) => mm ? `${h}h${String(mm).padStart(2, '0')}` : `${h}h`,
+      status: {
+        open: (t) => `Ouvert maintenant · service jusqu’à ${t}`,
+        opensAt: (t) => `Fermé · ouvre à ${t}`,
+        reopensAt: (t) => `Fermé · rouvre à ${t}`,
+        opensTomorrow: (t) => `Fermé · ouvre demain à ${t}`
+      }
+    },
+    en: {
+      days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      today: 'Today',
+      menuOpen: 'Open menu',
+      menuClose: 'Close menu',
+      axisHour: (h) => String(h),
+      time: (h, mm) => `${h}:${String(mm).padStart(2, '0')}`,
+      status: {
+        open: (t) => `Open now · service until ${t}`,
+        opensAt: (t) => `Closed · opens at ${t}`,
+        reopensAt: (t) => `Closed · reopens at ${t}`,
+        opensTomorrow: (t) => `Closed · opens tomorrow at ${t}`
+      }
+    }
+  };
+  const T = I18N[LANG];
+
+  /* ------------------------------------------------------------------
      Horaires — modifiez ici si les services changent (minutes depuis 0h)
      ------------------------------------------------------------------ */
   const SERVICES = [
     { start: 12 * 60, end: 14 * 60, label: 'Déjeuner' },
     { start: 18 * 60, end: 20 * 60 + 30, label: 'Dîner' }
   ];
-  const DAYS = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+  const DAYS = T.days;
   const RANGE = [10 * 60, 23 * 60]; // fenêtre affichée dans la frise
 
-  const fmt = (m) => { const h = Math.floor(m / 60), mm = m % 60; return mm ? `${h}h${String(mm).padStart(2, '0')}` : `${h}h`; };
+  const fmt = (m) => T.time(Math.floor(m / 60), m % 60);
 
   function parisNow() {
     const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Paris', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date());
@@ -38,10 +76,10 @@
      ------------------------------------------------------------------ */
   function statusText(min) {
     const cur = SERVICES.find((s) => min >= s.start && min < s.end);
-    if (cur) return { open: true, text: `Ouvert maintenant · service jusqu’à ${fmt(cur.end)}` };
+    if (cur) return { open: true, text: T.status.open(fmt(cur.end)) };
     const next = SERVICES.find((s) => min < s.start);
-    if (next) return { open: false, text: `Fermé · ${next === SERVICES[0] ? 'ouvre' : 'rouvre'} à ${fmt(next.start)}` };
-    return { open: false, text: `Fermé · ouvre demain à ${fmt(SERVICES[0].start)}` };
+    if (next) return { open: false, text: next === SERVICES[0] ? T.status.opensAt(fmt(next.start)) : T.status.reopensAt(fmt(next.start)) };
+    return { open: false, text: T.status.opensTomorrow(fmt(SERVICES[0].start)) };
   }
 
   function buildDays() {
@@ -56,7 +94,7 @@
     [12, 14, 16, 18, 20, 22].forEach((h) => {
       const s = document.createElement('span');
       s.style.left = pct(h * 60) + '%';
-      s.textContent = h + 'h';
+      s.textContent = T.axisHour(h);
       $('.axis-track', axis).appendChild(s);
     });
     host.appendChild(axis);
@@ -86,7 +124,7 @@
     $$('.day').forEach((row) => {
       const today = +row.dataset.day === day;
       row.classList.toggle('today', today);
-      $('small', row).textContent = today ? 'Aujourd’hui' : '';
+      $('small', row).textContent = today ? T.today : '';
       const now = $('.now', row);
       const inRange = today && min >= RANGE[0] && min <= RANGE[1];
       now.style.display = inRange ? 'block' : 'none';
@@ -262,7 +300,7 @@
       menu.classList.toggle('open', open);
       menu.setAttribute('aria-hidden', String(!open));
       burger.setAttribute('aria-expanded', String(open));
-      burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+      burger.setAttribute('aria-label', open ? T.menuClose : T.menuOpen);
       document.body.style.overflow = open ? 'hidden' : '';
       nav.classList.remove('hide');
     };

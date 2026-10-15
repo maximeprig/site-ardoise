@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>L’Ardoise — Restaurant on the harbour of Ouistreham</title>
+  <meta name="description" content="L’Ardoise, restaurant on the harbour of Ouistreham (Calvados, Normandy), 1 place du Général de Gaulle. Open every day from 12:00 to 14:00 and 18:00 to 20:30. Reservations: +33 2 31 97 12 16.">
+  <meta name="theme-color" content="#292622">
+  <meta property="og:title" content="L’Ardoise — Restaurant on the harbour of Ouistreham">
+  <meta property="og:description" content="Open every day from 12:00 to 14:00 and 18:00 to 20:30. 1 place du Général de Gaulle, Ouistreham, France.">
+  <meta property="og:type" content="restaurant">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23292622'/%3E%3Cg fill='none' stroke='%23d8cbb8' stroke-width='1.2'%3E%3Ccircle cx='16' cy='16' r='12'/%3E%3Cpath d='M16 7v11M16 8l6 9h-6M8 21q2-2 4 0t4 0t4 0t4 0'/%3E%3C/g%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=DM+Sans:opsz,wght@9..40,500;9..40,700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Même fiche qu'index.html : les faits (adresse, tél., coordonnées, horaires) ne changent pas avec la langue. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "L’Ardoise",
+    "telephone": "+33231971216",
+    "email": "lecailler14@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1 place du Général de Gaulle",
+      "addressLocality": "Ouistreham",
+      "postalCode": "14150",
+      "addressRegion": "Calvados",
+      "addressCountry": "FR"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 49.27912, "longitude": -0.25116 },
+    "openingHours": ["Mo-Su 12:00-14:00", "Mo-Su 18:00-20:30"]
+  }
+  </script>
+</head>
+<body class="is-loading">
+
+  <!-- Symboles SVG réutilisés -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="mark" viewBox="0 0 32 32">
+      <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="16" cy="16" r="14.5"/>
+        <path d="M16 6.5V17M16 8l6.5 9H16"/>
+        <path d="M6.5 21q2.4-2.4 4.8 0t4.7 0t4.8 0t4.7 0"/>
+        <path d="M9 25q2-2 4 0t4 0t4 0"/>
+      </g>
+    </symbol>
+    <symbol id="arrow" viewBox="0 0 16 16">
+      <path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </svg>
+
+  <!-- Préchargeur -->
+  <div class="preloader" aria-hidden="true">
+    <div class="pl-inner">
+      <svg class="pl-mark"><use href="#mark"/></svg>
+      <p class="pl-name">L’Ardoise</p>
+      <p class="pl-sub">Ouistreham · Port</p>
+      <div class="pl-line"><i class="pl-bar"></i></div>
+      <p class="pl-num">00</p>
+    </div>
+  </div>
+
+  <div class="progress" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <header class="nav" id="nav">
+    <a class="brand" href="#accueil" aria-label="L’Ardoise — home">
+      <svg class="brand-mark"><use href="#mark"/></svg>
+      <span data-roll>L’Ardoise</span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#lieu"><span data-roll>The restaurant</span></a>
+      <a href="#carte"><span data-roll>Menu</span></a>
+      <a href="#horaires"><span data-roll>Hours</span></a>
+      <a href="#contact"><span data-roll>Contact</span></a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang" aria-label="Choose site language">
+        <a href="index.html" hreflang="fr" lang="fr">FR</a><span class="lang-sep">·</span><span class="lang-cur" aria-current="true">EN</span>
+      </div>
+      <a class="btn btn-sm" href="tel:+33231971216" data-magnet aria-label="Reserve by phone on +33 2 31 97 12 16"><span data-roll>Reserve · +33 2 31 97 12 16</span></a>
+      <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
+    </div>
+  </header>
+
+  <div class="menu-overlay" id="menu" aria-hidden="true">
+    <nav>
+      <a href="#lieu"><span>01</span>The restaurant</a>
+      <a href="#carte"><span>02</span>Menu</a>
+      <a href="#horaires"><span>03</span>Hours</a>
+      <a href="#contact"><span>04</span>Contact</a>
+      <a href="#contact"><span>→</span>Reserve</a>
+    </nav>
+    <p class="menu-foot">Reservations by phone or in person only<br><a href="tel:+33231971216">+33 2 31 97 12 16</a><br>1 place du Général de Gaulle · 14150 Ouistreham, France</p>
+  </div>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="accueil">
+      <!-- Pour une vraie photo d'ambiance : ajoutez dans style.css  .hero { --hero-photo: url("images/hero.jpg"); } -->
+      <div class="hero-photo" aria-hidden="true"></div>
+      <canvas id="sea" aria-hidden="true"></canvas>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-shade" aria-hidden="true"></div>
+
+      <div class="hero-inner">
+        <div class="hero-meta">
+          <span data-reveal="fade" style="--d:1500">On the harbour of Ouistreham</span>
+          <span data-reveal="fade" style="--d:1650">Calvados · Normandy</span>
+        </div>
+
+        <h1 class="wordmark" aria-label="L’Ardoise"><span class="wm-line" data-chars aria-hidden="true">L’Ardoise</span></h1>
+
+        <div class="hero-foot">
+          <i class="rule" data-reveal="line" style="--d:1700"></i>
+          <div class="hero-foot-row">
+            <p class="status" data-status data-reveal="fade" style="--d:1800"><i class="dot"></i><span>…</span></p>
+            <div class="hero-cta" data-reveal="up" style="--d:1900">
+              <a class="btn" href="#carte" data-magnet><span data-roll>View the menu</span><svg class="ico"><use href="#arrow"/></svg></a>
+              <a class="btn" href="tel:+33231971216" data-magnet aria-label="Reserve by phone on +33 2 31 97 12 16"><span data-roll>Reserve · +33 2 31 97 12 16</span></a>
+            </div>
+            <p class="hero-hours" data-reveal="fade" style="--d:2000">Every day<br>12:00 – 14:00 · 18:00 – 20:30</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MARQUEE ================= -->
+    <section class="marquee on-light" aria-label="Ouistreham, starters, mains, desserts, drinks">
+      <div class="mq-row" data-mq="-1">
+        <div class="mq-set"><span>Ouistreham</span><i></i><span>The harbour</span><i></i><span>Calvados</span><i></i><span>Normandy</span><i></i><span>Lunch &amp; dinner</span><i></i></div>
+      </div>
+      <div class="mq-row outline" data-mq="1">
+        <div class="mq-set"><span>Starters</span><i></i><span>Mains</span><i></i><span>Desserts</span><i></i><span>Drinks</span><i></i><span>7 days a week</span><i></i></div>
+      </div>
+    </section>
+
+    <!-- ================= THE RESTAURANT ================= -->
+    <section class="intro on-light" id="lieu">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="label" data-reveal="up">01 — The restaurant</p>
+          <i class="rule" data-reveal="line"></i>
+        </div>
+
+        <div class="intro-grid">
+          <p class="lead" data-fill>On the harbour of Ouistreham, a table open every day, at lunch and in the evening. Come for lunch just steps from the boats, or dine as the sky changes colour.</p>
+
+          <div class="intro-side">
+            <svg class="badge" viewBox="0 0 200 200" aria-hidden="true" data-reveal="scale">
+              <defs><path id="circ" d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0"/></defs>
+              <text><textPath href="#circ" textLength="486" lengthAdjust="spacing">OPEN 7/7 • 12:00–14:00 • 18:00–20:30 • OUISTREHAM • </textPath></text>
+              <use href="#mark" x="76" y="76" width="48" height="48"/>
+            </svg>
+            <p class="body" data-reveal="up" style="--d:150">1 place du Général de Gaulle, in the heart of the harbour. A menu in four parts — drinks, starters, mains and desserts — to explore at your own pace.</p>
+            <a class="link" href="#carte" data-reveal="up" style="--d:250"><span data-roll>See the menu</span><svg class="ico"><use href="#arrow"/></svg></a>
+          </div>
+        </div>
+
+        <div class="cards" data-stagger>
+          <article class="card" data-reveal="up" data-tilt>
+            <span class="card-num">01</span>
+            <h3 class="card-title">Lunch</h3>
+            <p class="card-time">12:00 <em>→</em> 14:00</p>
+            <p class="card-text">Every day, Monday to Sunday.</p>
+          </article>
+          <article class="card" data-reveal="up" data-tilt>
+            <span class="card-num">02</span>
+            <h3 class="card-title">Dinner</h3>
+            <p class="card-time">18:00 <em>→</em> 20:30</p>
+            <p class="card-text">Every day, until 20:30.</p>
+          </article>
+          <article class="card" data-reveal="up" data-tilt>
+            <span class="card-num">03</span>
+            <h3 class="card-title">On the harbour</h3>
+            <p class="card-time">Ouistreham</p>
+            <p class="card-text">1 place du Général de Gaulle,<br>14150 Ouistreham, France.</p>
+          </article>
+        </div>
+
+        <!-- À savoir : accessibilité PMR et stockage des vélos. Informations données par le restaurant :
+             ne rien ajouter qu'il n'ait confirmé. Même contenu à tenir à jour dans index.html. -->
+        <p class="label cards-label" data-reveal="up">Good to know</p>
+        <div class="cards cards-duo" data-stagger>
+          <article class="card" data-reveal="up" data-tilt>
+            <span class="card-num">04</span>
+            <svg class="card-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="4" r="1.7"/><path d="M10 7.5V14M10 10.5H15.5M10 14H15.5L18 20.5h2"/><path d="M6.52 11.94A5.2 5.2 0 1 0 13.48 19.54"/></svg>
+            <h3 class="card-title">Accessibility</h3>
+            <p class="card-time">Accessible</p>
+            <p class="card-text">The restaurant and its toilets are accessible to people with reduced mobility.</p>
+          </article>
+          <article class="card" data-reveal="up" data-tilt>
+            <span class="card-num">05</span>
+            <svg class="card-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="16.5" r="4"/><circle cx="18.5" cy="16.5" r="4"/><path d="M5.5 16.5 9.5 8.5H16l2.5 8M9.5 8.5l2 8h-6M11.5 16.5 16 8.5M7.5 8.5h4M16 8.5l-.8-2.5h2.8"/></svg>
+            <h3 class="card-title">Bikes</h3>
+            <p class="card-time">Secure storage</p>
+            <p class="card-text">A private, closed and secure place to store bicycles.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MENU ================= -->
+    <section class="carte on-light" id="carte">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="label" data-reveal="up">02 — Menu</p>
+          <i class="rule" data-reveal="line"></i>
+        </div>
+        <h2 class="h2" data-split>The menu</h2>
+
+        <div class="carte-grid">
+          <div class="tabs" role="tablist" aria-label="Menu sections" id="tabs"></div>
+          <div class="panel" id="panel" role="tabpanel" aria-live="polite"></div>
+        </div>
+        <noscript><p>Please enable JavaScript to view the menu, or call us on +33 2 31 97 12 16.</p></noscript>
+      </div>
+    </section>
+
+    <!-- ================= THE HARBOUR (scène épinglée) ================= -->
+    <section class="harbor on-dark" id="port" aria-label="The harbour of Ouistreham">
+      <div class="harbor-sticky">
+        <p class="harbor-title" aria-hidden="true">Facing <br class="br-m">the harbour</p>
+
+        <svg class="harbor-svg" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+          <defs>
+            <clipPath id="sky"><rect x="0" y="0" width="1440" height="520"/></clipPath>
+          </defs>
+
+          <g clip-path="url(#sky)">
+            <g id="sun">
+              <circle class="draw sun" cx="720" cy="520" r="112" pathLength="1"/>
+              <circle class="draw sun2" cx="720" cy="520" r="150" pathLength="1"/>
+            </g>
+          </g>
+
+          <path class="draw" d="M0 520H1440" pathLength="1"/>
+
+          <!-- Phare -->
+          <g class="lh">
+            <path class="draw" d="M1196 520 1206 360H1234L1244 520" pathLength="1"/>
+            <path class="draw" d="M1200 470H1240M1203 420H1237" pathLength="1"/>
+            <path class="draw" d="M1200 360H1240M1208 360V332H1232V360M1204 332H1236L1220 306Z" pathLength="1"/>
+          </g>
+
+          <!-- Bateaux -->
+          <g class="boat b1">
+            <path class="draw" d="M360 512H500L482 538H380Z" pathLength="1"/>
+            <path class="draw" d="M430 512V400M430 406V504L490 504ZM424 424V504L384 504Z" pathLength="1"/>
+          </g>
+          <g class="boat b2">
+            <path class="draw" d="M700 572H880L856 606H724Z" pathLength="1"/>
+            <path class="draw" d="M790 572V430M790 438V564L858 564ZM782 458V564L734 564Z" pathLength="1"/>
+          </g>
+          <g class="boat b3">
+            <path class="draw" d="M1010 526H1100L1088 546H1022Z" pathLength="1"/>
+            <path class="draw" d="M1055 526V456M1055 460V520L1094 520Z" pathLength="1"/>
+          </g>
+
+          <!-- Vagues -->
+          <g class="waves">
+            <path class="draw wv" d="M-120 548q90-14 180 0t180 0t180 0t180 0t180 0t180 0t180 0t180 0t180 0" pathLength="1"/>
+            <path class="draw wv" d="M-120 586q100-18 200 0t200 0t200 0t200 0t200 0t200 0t200 0t200 0" pathLength="1"/>
+            <path class="draw wv" d="M-120 630q110-22 220 0t220 0t220 0t220 0t220 0t220 0t220 0" pathLength="1"/>
+            <path class="draw wv" d="M-120 682q120-26 240 0t240 0t240 0t240 0t240 0t240 0t240 0" pathLength="1"/>
+            <path class="draw wv" d="M-120 742q130-30 260 0t260 0t260 0t260 0t260 0t260 0" pathLength="1"/>
+          </g>
+        </svg>
+
+        <div class="harbor-cap harbor-cap-a">
+          <p class="label">03 — The harbour</p>
+          <p class="harbor-line">Lunch and dinner,<br>every day.</p>
+        </div>
+        <p class="harbor-cap harbor-cap-b">1 place du Général de Gaulle<br>14150 Ouistreham, France</p>
+      </div>
+    </section>
+
+    <!-- ================= HOURS ================= -->
+    <section class="hours on-light" id="horaires">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="label" data-reveal="up">04 — Hours</p>
+          <i class="rule" data-reveal="line"></i>
+        </div>
+        <div class="hours-head">
+          <h2 class="h2" data-split>Open<br>every day</h2>
+          <div class="hours-status" data-reveal="up" style="--d:200">
+            <p class="status status-lg" data-status><i class="dot"></i><span>…</span></p>
+            <p class="body">Two services, lunch and dinner, seven days a week.</p>
+          </div>
+        </div>
+        <div class="days" id="days"></div>
+      </div>
+    </section>
+
+    <!-- ================= REVIEWS (traduction) =================
+         Traduction fidèle (sans reformulation ni enjolivure) des mêmes avis Google vérifiés et
+         sélectionnés dans index.html : voir ce fichier pour l'URL source, la date de relevé et les
+         critères de sélection (avis récents, bien notés, précis, classés du plus récent au plus ancien).
+         Important : à chaque changement de sélection dans index.html, reportez le même changement ici
+         en traduisant fidèlement (ne pas inventer, ne pas changer le sens), étoiles/auteur/délai inclus. -->
+    <section class="reviews on-light" id="avis">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="label" data-reveal="up">05 — Reviews</p>
+          <i class="rule" data-reveal="line"></i>
+        </div>
+        <div class="reviews-top">
+          <h2 class="h2" data-split>What people<br>are saying</h2>
+          <div class="reviews-score" data-reveal="up">
+            <p class="score-num">4.1 <span>/ 5</span></p>
+            <p class="score-stars" aria-hidden="true">★★★★☆</p>
+            <p class="score-text">476 reviews on Google</p>
+            <a class="link" href="https://www.google.com/maps/place/l'Ardoise+Restaurant/@49.2794805,-0.2527661,17z/data=!4m8!3m7!1s0x480a65fc0c7f3af5:0x70d596b481e7ab75!8m2!3d49.2791602!4d-0.2511388!9m1!1b1!16s%2Fg%2F11jlx2wq5j" target="_blank" rel="noopener"><span data-roll>See all reviews</span><svg class="ico"><use href="#arrow"/></svg></a>
+          </div>
+        </div>
+
+        <div class="reviews-row" data-stagger>
+          <article class="review-card" data-reveal="up">
+            <div class="review-top">
+              <p class="stars" aria-label="5 stars out of 5">★★★★★</p>
+              <span class="review-src">Google</span>
+            </div>
+            <p class="review-body">« Good restaurant for seafood, fast service with a very friendly young waiter. »</p>
+            <p class="review-author">Minh Mai <span>· edited 3 weeks ago</span></p>
+          </article>
+
+          <article class="review-card" data-reveal="up">
+            <div class="review-top">
+              <p class="stars" aria-label="5 stars out of 5">★★★★★</p>
+              <span class="review-src">Google</span>
+            </div>
+            <p class="review-body">« Very good restaurant. The staff are welcoming and charming. Always smiling, which is lovely. The food is excellent. »</p>
+            <p class="review-author">MANUELLA ESTEVES <span>· a month ago</span></p>
+          </article>
+
+          <article class="review-card" data-reveal="up">
+            <div class="review-top">
+              <p class="stars" aria-label="5 stars out of 5">★★★★★</p>
+              <span class="review-src">Google</span>
+            </div>
+            <p class="review-body">« Perfectly cooked scallops with an excellent little sauce — I thoroughly enjoyed it. A big thank you to the very professional, attentive waiter, even towards our dog Loulou. »</p>
+            <p class="review-author">Martine Balland <span>· 2 months ago</span></p>
+          </article>
+
+          <article class="review-card" data-reveal="up">
+            <div class="review-top">
+              <p class="stars" aria-label="4 stars out of 5">★★★★<span class="off">★</span></p>
+              <span class="review-src">Google</span>
+            </div>
+            <p class="review-body">« A great experience, a very professional welcome even though we were 26 at the table. Quick, helpful and attentive. If you go in the evening, you’re sure to have a good time. »</p>
+            <p class="review-author">Joseph Pacaud <span>· 4 months ago</span></p>
+          </article>
+
+          <article class="review-card" data-reveal="up">
+            <div class="review-top">
+              <p class="stars" aria-label="5 stars out of 5">★★★★★</p>
+              <span class="review-src">Google</span>
+            </div>
+            <p class="review-body">« Our annual ritual whenever we stay in Ouistreham, and for us a reservation is a must. Great taste, a well-made mojito, and the kindness of the always-smiling Mauritian waiter. We’ve tried several restaurants before this one. Well worth discovering. »</p>
+            <p class="review-author">Didier M <span>· 5 months ago</span></p>
+          </article>
+
+          <article class="review-card" data-reveal="up">
+            <div class="review-top">
+              <p class="stars" aria-label="5 stars out of 5">★★★★★</p>
+              <span class="review-src">Google</span>
+            </div>
+            <p class="review-body">« The chef’s meals are super delicious with affordable prices. Very good service and a warm welcome from Mr Frederic! »</p>
+            <p class="review-author">60 Dinanath Pusun <span>· 7 months ago</span></p>
+          </article>
+        </div>
+
+        <p class="reviews-note" data-reveal="fade">Selection of Google reviews, translated from the original French — dates as shown by Google on 25 September 2026.</p>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <!-- Aucun formulaire sur cette page (réservation uniquement par téléphone ou sur place, cf. politique
+         de confidentialité §02) : les liens tel:/mailto: ci-dessous ouvrent l'application du visiteur et ne
+         transmettent aucune donnée au site. Si un formulaire est ajouté un jour, pensez à : n'y demander que
+         les champs strictement nécessaires, y ajouter une mention d'information, et un lien vers confidentialite.html. -->
+    <section class="contact on-dark" id="contact">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="label" data-reveal="up">06 — Contact &amp; reservations</p>
+          <i class="rule" data-reveal="line"></i>
+        </div>
+        <h2 class="h2" data-split>A table<br>is waiting</h2>
+
+        <!-- Réservation : uniquement par téléphone ou sur place -->
+        <div class="resa">
+          <p class="label" data-reveal="up">Reservations by phone or in person only</p>
+          <a class="phone" href="tel:+33231971216" aria-label="Reserve by phone: +33 2 31 97 12 16" data-phone data-hover>+33 2 31 97 12 16</a>
+          <i class="rule" data-reveal="line"></i>
+          <div class="resa-row">
+            <p class="body" data-reveal="up">We don’t take online reservations: please call us, or come directly to the restaurant.</p>
+            <div class="contact-cta" data-reveal="up" style="--d:120">
+              <a class="btn" href="tel:+33231971216" data-magnet><span data-roll>Call us</span></a>
+              <a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=49.27912,-0.25116" target="_blank" rel="noopener" data-magnet><span data-roll>Directions</span><svg class="ico"><use href="#arrow"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="infos" data-stagger>
+          <address class="info" data-reveal="up">
+            <p class="label">Address</p>
+            <p class="info-title">1 place du Général de Gaulle</p>
+            <p class="info-text">14150 Ouistreham<br>Calvados, Normandy, France</p>
+          </address>
+          <div class="info" data-reveal="up">
+            <p class="label">Hours</p>
+            <p class="info-title">Every day</p>
+            <p class="info-text">12:00 – 14:00 &nbsp;·&nbsp; 18:00 – 20:30</p>
+          </div>
+          <div class="info" data-reveal="up">
+            <p class="label">A question?</p>
+            <p class="info-title">Email us</p>
+            <p class="info-text"><a class="mail" href="mailto:lecailler14@gmail.com">lecailler14@gmail.com</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="map" data-reveal="fade">
+        <!-- Repère sur le restaurant L'Ardoise, tel qu'il figure dans OpenStreetMap : 49.27912, -0.25116.
+             Pour déplacer le repère : changer marker=lat,lon et recentrer bbox=lonMin,latMin,lonMax,latMax
+             (mêmes coordonnées dans les deux liens "Directions" et dans le bloc geo des données Google en haut de la page). -->
+        <iframe title="Map — L’Ardoise, 1 place du Général de Gaulle, Ouistreham" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-0.2548%2C49.2774%2C-0.2475%2C49.2809&amp;layer=mapnik&amp;marker=49.27912%2C-0.25116"></iframe>
+        <a class="map-tag" href="https://www.google.com/maps/dir/?api=1&destination=49.27912,-0.25116" target="_blank" rel="noopener">
+          <span>1 place du Général de Gaulle</span><span class="map-tag-go">Directions <svg class="ico"><use href="#arrow"/></svg></span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer on-dark">
+    <div class="foot-top">
+      <p class="foot-mark" data-chars aria-label="L’Ardoise">L’Ardoise</p>
+    </div>
+    <i class="rule"></i>
+    <div class="foot-row">
+      <p>© <span id="year">2026</span> L’Ardoise — Restaurant, port of Ouistreham</p>
+      <p>1 place du Général de Gaulle · 14150 Ouistreham, France</p>
+      <p><a href="tel:+33231971216">+33 2 31 97 12 16</a> · <a href="mailto:lecailler14@gmail.com">lecailler14@gmail.com</a></p>
+      <!-- Pages légales non traduites (voir ma réponse en conversation) : elles restent en français, le temps que
+           le client complète ses vraies informations légales ; on les traduira une fois finalisées. -->
+      <p><a href="mentions-legales.html">Legal notice (FR)</a> · <a href="confidentialite.html">Privacy policy (FR)</a></p>
+      <a class="totop" href="#accueil" data-magnet aria-label="Back to top"><span data-roll>Back to top</span><svg class="ico up"><use href="#arrow"/></svg></a>
+    </div>
+  </footer>
+
+  <script src="menu-data.en.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
