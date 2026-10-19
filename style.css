@@ -243,6 +243,7 @@ a:hover .roll::after, button:hover .roll::after { transform: none; }
   background: var(--color-midnight-roast); color: var(--color-parchment);
   display: flex; flex-direction: column; justify-content: flex-end;
   overflow: hidden;
+  --hero-photo: url("images/hero.jpg"); /* photo d'ambiance de la salle (assombrie par .hero-photo et .hero-shade) */
 }
 .hero-photo {
   position: absolute; inset: -4%;
@@ -252,6 +253,8 @@ a:hover .roll::after, button:hover .roll::after { transform: none; }
   animation: kenburns 24s ease-in-out infinite alternate;
 }
 @keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.09) translate(-1.5%, 1%); } }
+/* téléphone en portrait : le cadre se centre sur l'arche et le bar, sans le nom gravé sur la vitre (vu à l'envers depuis la salle) */
+@media (max-width: 700px) { .hero-photo { background-position: 78% center; } }
 #sea { position: absolute; inset: 0; width: 100%; height: 100%; }
 .hero-glow {
   position: absolute; inset: 0; pointer-events: none;
