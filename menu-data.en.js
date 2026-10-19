@@ -78,6 +78,28 @@ window.CARTE = [
     subnav: true,
     groups: [
       {
+        title: 'From the sea', // en premier : ce sont les spécialités du restaurant (la 1re section s'ouvre par défaut)
+        items: [
+          { name: 'Whelks with mayonnaise', price: '12.00' },
+          { name: '9 prawns with mayonnaise', price: '15.00' },
+          { name: '6 oysters', price: '12.00' },
+          { name: 'Seafood platter', price: '19.50' },
+          { name: 'Seafood choucroute', desc: 'Sauerkraut with fish and shellfish', price: '23.00' },
+          { name: 'Fish and shellfish plancha', desc: 'Mojo sauce', price: '26.00' },
+          { name: 'Whole roasted sea bass', price: '22.00' },
+          { name: 'Grilled octopus', price: '20.00' },
+          { name: 'Catch of the day', price: '22.00' },
+          { name: 'Normandy-style skate wing', price: '16.50' },
+          { name: 'Grilled gambas', desc: 'King prawns', price: '22.00' },
+          { name: 'Pan-fried scallops', price: '19.00' },
+          { name: 'Scallops en persillade', desc: 'With parsley and garlic', price: '19.00' },
+          { name: 'Mussels marinière', desc: 'In white wine', price: '13.50' },
+          { name: 'Mussels in cream sauce', price: '15.00' },
+          { name: 'Normandy-style mussels', price: '15.00' },
+          { name: 'Mussels homardine', desc: 'Lobster-style sauce', price: '15.00' }
+        ]
+      },
+      {
         label: 'Brasserie',
         title: 'Brasserie · served with chips',
         items: [
@@ -111,28 +133,6 @@ window.CARTE = [
           { name: 'Caesar salad', price: '14.50' },
           { name: 'Omelette complète', price: '11.00' },
           { name: 'Plate of chips or green salad', price: '3.50' }
-        ]
-      },
-      {
-        title: 'From the sea',
-        items: [
-          { name: 'Whelks with mayonnaise', price: '12.00' },
-          { name: '9 prawns with mayonnaise', price: '15.00' },
-          { name: '6 oysters', price: '12.00' },
-          { name: 'Seafood platter', price: '19.50' },
-          { name: 'Seafood choucroute', desc: 'Sauerkraut with fish and shellfish', price: '23.00' },
-          { name: 'Fish and shellfish plancha', desc: 'Mojo sauce', price: '26.00' },
-          { name: 'Whole roasted sea bass', price: '22.00' },
-          { name: 'Grilled octopus', price: '20.00' },
-          { name: 'Catch of the day', price: '22.00' },
-          { name: 'Normandy-style skate wing', price: '16.50' },
-          { name: 'Grilled gambas', desc: 'King prawns', price: '22.00' },
-          { name: 'Pan-fried scallops', price: '19.00' },
-          { name: 'Scallops en persillade', desc: 'With parsley and garlic', price: '19.00' },
-          { name: 'Mussels marinière', desc: 'In white wine', price: '13.50' },
-          { name: 'Mussels in cream sauce', price: '15.00' },
-          { name: 'Normandy-style mussels', price: '15.00' },
-          { name: 'Mussels homardine', desc: 'Lobster-style sauce', price: '15.00' }
         ]
       }
     ]

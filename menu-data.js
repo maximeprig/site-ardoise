@@ -88,6 +88,28 @@ window.CARTE = [
     subnav: true,
     groups: [
       {
+        title: 'Côté mer', // en premier : ce sont les spécialités du restaurant (la 1re section s'ouvre par défaut)
+        items: [
+          { name: 'Bulots mayonnaise', price: '12,00' },
+          { name: '9 crevettes mayonnaise', price: '15,00' },
+          { name: '6 huîtres', price: '12,00' },
+          { name: 'Assiette de fruits de mer', price: '19,50' },
+          { name: 'Choucroute de la mer', price: '23,00' },
+          { name: 'Plancha de poissons et crustacés', desc: 'Sauce mojo', price: '26,00' },
+          { name: 'Bar entier rôti', price: '22,00' },
+          { name: 'Poulpe grillé', price: '20,00' },
+          { name: 'Pêche du moment', price: '22,00' },
+          { name: 'Aile de raie normande', price: '16,50' },
+          { name: 'Gambas grillées', price: '22,00' },
+          { name: 'Poêlée de Saint-Jacques', price: '19,00' },
+          { name: 'Saint-Jacques en persillade', price: '19,00' },
+          { name: 'Moules marinière', price: '13,50' },
+          { name: 'Moules crème', price: '15,00' },
+          { name: 'Moules normandes', price: '15,00' },
+          { name: 'Moules homardine', price: '15,00' }
+        ]
+      },
+      {
         label: 'Brasserie',
         title: 'Brasserie · servie avec des frites',
         items: [
@@ -121,28 +143,6 @@ window.CARTE = [
           { name: 'Salade César', price: '14,50' },
           { name: 'Omelette complète', price: '11,00' },
           { name: 'Assiette de frites ou salade verte', price: '3,50' }
-        ]
-      },
-      {
-        title: 'Côté mer',
-        items: [
-          { name: 'Bulots mayonnaise', price: '12,00' },
-          { name: '9 crevettes mayonnaise', price: '15,00' },
-          { name: '6 huîtres', price: '12,00' },
-          { name: 'Assiette de fruits de mer', price: '19,50' },
-          { name: 'Choucroute de la mer', price: '23,00' },
-          { name: 'Plancha de poissons et crustacés', desc: 'Sauce mojo', price: '26,00' },
-          { name: 'Bar entier rôti', price: '22,00' },
-          { name: 'Poulpe grillé', price: '20,00' },
-          { name: 'Pêche du moment', price: '22,00' },
-          { name: 'Aile de raie normande', price: '16,50' },
-          { name: 'Gambas grillées', price: '22,00' },
-          { name: 'Poêlée de Saint-Jacques', price: '19,00' },
-          { name: 'Saint-Jacques en persillade', price: '19,00' },
-          { name: 'Moules marinière', price: '13,50' },
-          { name: 'Moules crème', price: '15,00' },
-          { name: 'Moules normandes', price: '15,00' },
-          { name: 'Moules homardine', price: '15,00' }
         ]
       }
     ]
