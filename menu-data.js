@@ -110,8 +110,7 @@ window.CARTE = [
         ]
       },
       {
-        label: 'Brasserie',
-        title: 'Brasserie · servie avec des frites',
+        title: 'Brasserie',
         items: [
           { name: 'Entrecôte grillée', price: '22,50' },
           { name: 'Magret de canard', price: '22,00' },

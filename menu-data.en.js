@@ -100,8 +100,7 @@ window.CARTE = [
         ]
       },
       {
-        label: 'Brasserie',
-        title: 'Brasserie · served with chips',
+        title: 'Brasserie',
         items: [
           { name: 'Grilled entrecôte', desc: 'Rib steak', price: '22.50' },
           { name: 'Duck breast', price: '22.00' },
