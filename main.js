@@ -320,7 +320,8 @@
     if (!tabs || !panel || !data.length) return;
     let current = -1, busy = false;
 
-    const money = (p) => (p === '' || p == null) ? '' : (/[€]/.test(String(p)) ? String(p) : `${p} €`);
+    // FR : "12,50 €" — EN : "€12.50" (le montant est écrit tel quel dans menu-data*.js)
+    const money = (p) => (p === '' || p == null) ? '' : (/[€]/.test(String(p)) ? String(p) : (LANG === 'en' ? `€${p}` : `${p} €`));
 
     data.forEach((cat, i) => {
       const b = document.createElement('button');
@@ -363,7 +364,17 @@
           top.appendChild(name);
           if (it.tag) { const t = document.createElement('span'); t.className = 'dish-tag'; t.textContent = it.tag; top.appendChild(t); }
           const lead = document.createElement('span'); lead.className = 'dish-lead';
-          const pr = document.createElement('span'); pr.className = 'dish-price'; pr.textContent = money(it.price);
+          const pr = document.createElement('span'); pr.className = 'dish-price';
+          if (Array.isArray(it.prices)) {
+            // plusieurs formats pour un même article : prices: [['25 cl', '3,80'], ['50 cl', '7,50']]
+            it.prices.forEach(([size, p], k) => {
+              if (k) pr.appendChild(document.createTextNode(' ')); // espace pour les lecteurs d'écran / le copier-coller ("75 cl 28 € 37,5 cl 18 €")
+              const dp = document.createElement('span'); dp.className = 'dp';
+              const sz = document.createElement('small'); sz.textContent = size;
+              dp.append(sz, document.createTextNode(` ${money(p)}`));
+              pr.appendChild(dp);
+            });
+          } else pr.textContent = money(it.price);
           top.append(lead, pr);
           li.appendChild(top);
           if (it.desc) { const d = document.createElement('p'); d.className = 'dish-desc'; d.textContent = it.desc; li.appendChild(d); }

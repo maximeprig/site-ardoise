@@ -444,7 +444,10 @@ body.ready .wm-line .ch, .foot-mark.in .ch { animation-play-state: running; }
 }
 .dish-lead { flex: 1; align-self: flex-end; margin-bottom: 0.4375rem; border-bottom: 1px dotted var(--color-walnut); min-width: 1.25rem; transition: border-color .4s; }
 .dish-price { font: 700 0.9375rem var(--font-sans); white-space: nowrap; transition: transform .6s var(--ease-out); }
-.dish-desc { margin-top: 0.625rem; color: var(--color-espresso); max-width: 54ch; transition: transform .6s var(--ease-out); }
+/* article proposé en plusieurs formats (25 cl / 50 cl, 75 cl / 37,5 cl) : le format en petit devant chaque prix */
+.dish-price .dp + .dp { margin-left: 0.875rem; }
+.dish-price small { margin-right: 0.25rem; font: 500 0.6875rem var(--font-sans); letter-spacing: .04em; text-transform: uppercase; color: var(--color-walnut); }
+.dish-desc { margin-top: 0.625rem; color: var(--color-espresso); max-width: 54ch; white-space: pre-line; transition: transform .6s var(--ease-out); } /* pre-line : un \n dans desc fait un retour à la ligne (composition d'un menu) */
 .dish:hover .dish-name, .dish:hover .dish-desc { transform: translateX(1rem); }
 .dish:hover .dish-lead { border-color: var(--color-onyx-warm); }
 .dish:hover .dish-price { transform: translateX(-0.375rem) scale(1.12); transform-origin: right; }
@@ -454,6 +457,9 @@ body.ready .wm-line .ch, .foot-mark.in .ch { animation-play-state: running; }
 .panel.leave .dish, .panel.leave .grp, .panel.leave .panel-note { animation: dish-out .3s var(--ease) both; animation-delay: calc(var(--i) * 18ms); }
 @keyframes dish-in { from { opacity: 0; transform: translateY(2.125rem); } to { opacity: 1; transform: none; } }
 @keyframes dish-out { to { opacity: 0; transform: translateY(-0.875rem); } }
+
+/* mentions de bas de carte (prix, allergènes, alcool) */
+.carte-foot { max-width: 68ch; margin-top: clamp(2.5rem, 5vw, 4rem); font-size: 0.8125rem; line-height: 1.65; color: var(--color-muted); }
 
 /* ==========================================================================
    LE PORT — scène épinglée
