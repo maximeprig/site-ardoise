@@ -323,6 +323,18 @@
     const subsOf = (cat) => { const s = cat.subnav ? cat.groups.filter((g) => g.items.length) : []; return s.length > 1 ? s : []; };
     const subName = (g) => g.label || g.title;
 
+    // La carte a été défilée puis on change de partie : au moment où la liste change, on revient au début de la
+    // nouvelle liste. Sinon une liste plus courte laisse l'écran plus bas dans la page (jusqu'à "Face au port").
+    // Retour immédiat (pas animé) : il tombe pile quand l'ancienne liste est remplacée.
+    const grid = $('.carte-grid');
+    const toTop = () => {
+      if (!grid || current === -1) return; // 1er affichage : la page ne bouge pas
+      const rem = parseFloat(getComputedStyle(root).fontSize) || 16;
+      const lim = rem * (matchMedia('(max-width: 1000px)').matches ? 4.5 : 6.25); // barre de navigation (+ marge sur ordinateur)
+      const top = grid.getBoundingClientRect().top;
+      if (top < lim - 1) scrollTo({ top: scrollY + top - lim, behavior: 'instant' });
+    };
+
     // FR : "12,50 €" — EN : "€12.50" (le montant est écrit tel quel dans menu-data*.js)
     const money = (p) => (p === '' || p == null) ? '' : (/[€]/.test(String(p)) ? String(p) : (LANG === 'en' ? `€${p}` : `${p} €`));
 
@@ -435,7 +447,7 @@
         $$('.subtab', w).forEach((sb, k) => { if (on && k === s) sb.setAttribute('aria-current', 'true'); else sb.removeAttribute('aria-current'); });
       });
       panel.setAttribute('aria-labelledby', `tab-${data[i].id}`);
-      const swap = () => { render(data[i], i, s); current = i; sub = s; busy = false; };
+      const swap = () => { render(data[i], i, s); toTop(); current = i; sub = s; busy = false; };
       if (current === -1 || reduce) return swap();
       busy = true;
       panel.classList.remove('enter'); panel.classList.add('leave');
