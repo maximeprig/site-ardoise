@@ -318,14 +318,17 @@
     const data = (window.CARTE || []).filter((c) => count(c) > 0);
     const tabs = $('#tabs'), panel = $('#panel');
     if (!tabs || !panel || !data.length) return;
-    let current = -1, busy = false;
+    let current = -1, sub = 0, busy = false;
+    // sous-menu : une partie marquée subnav: true affiche une entrée par group (nom court = label, sinon title)
+    const subsOf = (cat) => { const s = cat.subnav ? cat.groups.filter((g) => g.items.length) : []; return s.length > 1 ? s : []; };
+    const subName = (g) => g.label || g.title;
 
     // FR : "12,50 €" — EN : "€12.50" (le montant est écrit tel quel dans menu-data*.js)
     const money = (p) => (p === '' || p == null) ? '' : (/[€]/.test(String(p)) ? String(p) : (LANG === 'en' ? `€${p}` : `${p} €`));
 
     data.forEach((cat, i) => {
       const b = document.createElement('button');
-      b.className = 'tab'; b.type = 'button'; b.role = 'tab';
+      b.className = 'tab'; b.type = 'button';
       b.id = `tab-${cat.id}`; b.setAttribute('aria-controls', 'panel');
       b.innerHTML = `<span class="t-num">${String(i + 1).padStart(2, '0')}</span><span class="t-name"></span><span class="t-count">${String(count(cat)).padStart(2, '0')}</span>`;
       $('.t-name', b).textContent = cat.title;
@@ -338,17 +341,51 @@
         show(n); $$('.tab', tabs)[n].focus();
       });
       tabs.appendChild(b);
+      const subs = subsOf(cat);
+      if (subs.length) {
+        // sous-menu déroulant sous l'onglet (ordinateur) ; sur téléphone, ce sont les pastilles en haut du panneau
+        b.setAttribute('aria-expanded', 'false'); b.setAttribute('aria-controls', `subs-${cat.id}`);
+        const wrap = document.createElement('div'); wrap.className = 'subtabs'; wrap.id = `subs-${cat.id}`;
+        const ul = document.createElement('ul');
+        subs.forEach((g, k) => {
+          const li = document.createElement('li'), sb = document.createElement('button');
+          sb.className = 'subtab'; sb.type = 'button'; sb.textContent = subName(g);
+          sb.addEventListener('click', () => show(i, k));
+          sb.addEventListener('keydown', (e) => {
+            const d = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+            if (!d) return;
+            e.preventDefault();
+            const n = (k + d + subs.length) % subs.length;
+            show(i, n); $$('.subtab', ul)[n].focus();
+          });
+          li.appendChild(sb); ul.appendChild(li);
+        });
+        wrap.appendChild(ul); tabs.appendChild(wrap);
+      }
     });
 
-    function render(cat) {
+    function render(cat, i, s) {
       panel.innerHTML = '';
       let idx = 0;
+      const subs = subsOf(cat);
+      if (subs.length) {
+        // pastilles (téléphone / tablette) : les mêmes sections que le sous-menu de l'ordinateur
+        const bar = document.createElement('div'); bar.className = 'subchips';
+        subs.forEach((g, k) => {
+          const c = document.createElement('button');
+          c.className = 'subchip'; c.type = 'button'; c.textContent = subName(g);
+          if (k === s) c.setAttribute('aria-current', 'true');
+          c.addEventListener('click', () => show(i, k));
+          bar.appendChild(c);
+        });
+        panel.appendChild(bar);
+      }
       if (cat.note) {
         const n = document.createElement('p');
         n.className = 'panel-note'; n.textContent = cat.note; n.style.setProperty('--i', idx++);
         panel.appendChild(n);
       }
-      cat.groups.forEach((g) => {
+      (subs.length ? [subs[s]] : cat.groups).forEach((g) => {
         if (g.title) {
           const h = document.createElement('h3');
           h.className = 'grp'; h.textContent = g.title; h.style.setProperty('--i', idx++);
@@ -385,11 +422,20 @@
       panel.className = 'panel enter';
     }
 
-    function show(i) {
-      if (i === current || busy) return;
-      $$('.tab', tabs).forEach((t, k) => { t.setAttribute('aria-selected', String(k === i)); t.tabIndex = k === i ? 0 : -1; });
+    function show(i, s) {
+      if (s === undefined) s = i === current ? sub : 0; // on revient toujours à la 1re section en changeant de partie
+      if ((i === current && s === sub) || busy) return;
+      $$('.tab', tabs).forEach((t, k) => {
+        if (k === i) t.setAttribute('aria-current', 'true'); else t.removeAttribute('aria-current');
+        if (t.hasAttribute('aria-expanded')) t.setAttribute('aria-expanded', String(k === i));
+      });
+      $$('.subtabs', tabs).forEach((w) => {
+        const on = w.id === `subs-${data[i].id}`;
+        w.classList.toggle('open', on);
+        $$('.subtab', w).forEach((sb, k) => { if (on && k === s) sb.setAttribute('aria-current', 'true'); else sb.removeAttribute('aria-current'); });
+      });
       panel.setAttribute('aria-labelledby', `tab-${data[i].id}`);
-      const swap = () => { render(data[i]); current = i; busy = false; };
+      const swap = () => { render(data[i], i, s); current = i; sub = s; busy = false; };
       if (current === -1 || reduce) return swap();
       busy = true;
       panel.classList.remove('enter'); panel.classList.add('leave');

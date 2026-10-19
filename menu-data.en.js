@@ -3,7 +3,7 @@
    --------------------------------------------------------------------------
    Ce fichier est le jumeau anglais de menu-data.js, chargé uniquement par
    index-en.html. Même structure, mêmes règles — voir menu-data.js pour le
-   détail des champs (name/desc/price/prices/tag/note).
+   détail des champs (name/desc/price/prices/tag/note, et subnav/label pour le sous-menu).
 
    ⚠️ RÈGLE IMPORTANTE : à chaque modification de la carte dans menu-data.js
    (nouveau plat, prix changé, suggestion ajoutée/retirée…), reportez le même
@@ -75,8 +75,10 @@ window.CARTE = [
   {
     id: 'plats',
     title: 'Mains',
+    subnav: true,
     groups: [
       {
+        label: 'Brasserie',
         title: 'Brasserie · served with chips',
         items: [
           { name: 'Grilled entrecôte', desc: 'Rib steak', price: '22.50' },
@@ -89,6 +91,7 @@ window.CARTE = [
         ]
       },
       {
+        label: 'Burgers',
         title: 'Burgers · homemade buns, served with chips and salad',
         items: [
           { name: 'Cheese burger', price: '14.50' },
@@ -111,17 +114,12 @@ window.CARTE = [
         ]
       },
       {
-        title: 'From the sea · shellfish',
+        title: 'From the sea',
         items: [
           { name: 'Whelks with mayonnaise', price: '12.00' },
           { name: '9 prawns with mayonnaise', price: '15.00' },
           { name: '6 oysters', price: '12.00' },
-          { name: 'Seafood platter', price: '19.50' }
-        ]
-      },
-      {
-        title: 'From the sea · main dishes',
-        items: [
+          { name: 'Seafood platter', price: '19.50' },
           { name: 'Seafood choucroute', desc: 'Sauerkraut with fish and shellfish', price: '23.00' },
           { name: 'Fish and shellfish plancha', desc: 'Mojo sauce', price: '26.00' },
           { name: 'Whole roasted sea bass', price: '22.00' },
@@ -142,6 +140,7 @@ window.CARTE = [
   {
     id: 'desserts',
     title: 'Desserts',
+    subnav: true,
     groups: [
       {
         title: 'Desserts',
@@ -187,6 +186,7 @@ window.CARTE = [
   {
     id: 'boissons',
     title: 'Drinks',
+    subnav: true,
     groups: [
       {
         title: 'Aperitifs',
@@ -206,15 +206,10 @@ window.CARTE = [
         ]
       },
       {
-        title: 'Draught beer',
+        title: 'Beer and cider',
         items: [
-          { name: 'Heineken', prices: [['25 cl', '3.80'], ['50 cl', '7.50']] },
-          { name: 'Ciney', prices: [['25 cl', '4.80'], ['50 cl', '9.60']] }
-        ]
-      },
-      {
-        title: 'Bottled beer and cider',
-        items: [
+          { name: 'Heineken', tag: 'Draught', prices: [['25 cl', '3.80'], ['50 cl', '7.50']] },
+          { name: 'Ciney', tag: 'Draught', prices: [['25 cl', '4.80'], ['50 cl', '9.60']] },
           { name: 'Abbaye de Leffe', tag: '33 cl', price: '5.50' },
           { name: 'Pelforth Brune', tag: '33 cl', price: '5.50' },
           { name: 'Desperados', tag: '33 cl', price: '5.50' },

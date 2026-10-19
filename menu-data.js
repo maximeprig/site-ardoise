@@ -9,6 +9,11 @@
        - tag    : facultatif (petite étiquette : "Nouveau", "Végétarien", "20 cl"…)
        - prices : facultatif, À LA PLACE de price quand un plat existe en plusieurs formats :
                   prices: [['25 cl', '3,80'], ['50 cl', '7,50']]
+   • Une partie peut avoir un SOUS-MENU (c'est le cas de Plats, Desserts et Boissons) : mettre
+     subnav: true  dans la partie. Chaque group devient alors une section du sous-menu (sous l'onglet
+     sur ordinateur, en pastilles sur téléphone) et on n'affiche qu'une section à la fois.
+     "label" (facultatif, sur le group) donne son nom court dans le sous-menu ; sinon c'est son titre.
+     Sans subnav, tous les groups de la partie s'affichent d'un bloc (Menus, Entrées, Vins).
    • Une partie peut avoir une "note" : une phrase affichée au-dessus de la liste.
    • "Suggestions" = les plats qui ne sont pas toujours à la carte. Une partie SANS aucun
      plat n'affiche pas d'onglet : quand il n'y a pas de suggestion, videz simplement sa
@@ -80,8 +85,10 @@ window.CARTE = [
   {
     id: 'plats',
     title: 'Plats',
+    subnav: true,
     groups: [
       {
+        label: 'Brasserie',
         title: 'Brasserie · servie avec des frites',
         items: [
           { name: 'Entrecôte grillée', price: '22,50' },
@@ -94,6 +101,7 @@ window.CARTE = [
         ]
       },
       {
+        label: 'Burgers',
         title: 'Burgers · buns maison, servis avec frites et salade',
         items: [
           { name: 'Cheese burger', price: '14,50' },
@@ -116,17 +124,12 @@ window.CARTE = [
         ]
       },
       {
-        title: 'Côté mer · fruits de mer',
+        title: 'Côté mer',
         items: [
           { name: 'Bulots mayonnaise', price: '12,00' },
           { name: '9 crevettes mayonnaise', price: '15,00' },
           { name: '6 huîtres', price: '12,00' },
-          { name: 'Assiette de fruits de mer', price: '19,50' }
-        ]
-      },
-      {
-        title: 'Côté mer · plats',
-        items: [
+          { name: 'Assiette de fruits de mer', price: '19,50' },
           { name: 'Choucroute de la mer', price: '23,00' },
           { name: 'Plancha de poissons et crustacés', desc: 'Sauce mojo', price: '26,00' },
           { name: 'Bar entier rôti', price: '22,00' },
@@ -147,6 +150,7 @@ window.CARTE = [
   {
     id: 'desserts',
     title: 'Desserts',
+    subnav: true,
     groups: [
       {
         title: 'Les desserts',
@@ -192,6 +196,7 @@ window.CARTE = [
   {
     id: 'boissons',
     title: 'Boissons',
+    subnav: true,
     groups: [
       {
         title: 'Apéritifs',
@@ -211,15 +216,10 @@ window.CARTE = [
         ]
       },
       {
-        title: 'Bières pression',
+        title: 'Bières et cidre',
         items: [
-          { name: 'Heineken', prices: [['25 cl', '3,80'], ['50 cl', '7,50']] },
-          { name: 'Ciney', prices: [['25 cl', '4,80'], ['50 cl', '9,60']] }
-        ]
-      },
-      {
-        title: 'Bières en bouteille et cidre',
-        items: [
+          { name: 'Heineken', tag: 'Pression', prices: [['25 cl', '3,80'], ['50 cl', '7,50']] },
+          { name: 'Ciney', tag: 'Pression', prices: [['25 cl', '4,80'], ['50 cl', '9,60']] },
           { name: 'Abbaye de Leffe', tag: '33 cl', price: '5,50' },
           { name: 'Pelforth brune', tag: '33 cl', price: '5,50' },
           { name: 'Desperados', tag: '33 cl', price: '5,50' },
