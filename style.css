@@ -882,3 +882,12 @@ body.ready .wm-line .ch, .foot-mark.in .ch { animation-play-state: running; }
 .legal-field dt { font: 500 0.75rem var(--font-sans); text-transform: uppercase; letter-spacing: -.012em; color: var(--color-walnut); }
 .legal-field dd { margin-top: 0.25rem; font: 500 0.9375rem var(--font-sans); }
 .legal-field dd.tbd { color: var(--color-saffron-glow); } /* signale un champ [À COMPLÉTER] */
+
+/* page 404 : texte + boutons en français, puis le même bloc en anglais ; le pied de page reste en bas même sur un grand écran */
+body.page-404 { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; }
+body.page-404 main { flex: 1; }
+.err-block .body a { border-bottom: 1px solid var(--color-warm-stone); transition: border-color .3s, color .3s; }
+.err-block .body a:hover { border-color: var(--color-onyx-warm); color: var(--color-saffron-glow); }
+.err-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.75rem; }
+.err-en { margin-top: clamp(2.5rem, 5vw, 4rem); padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--color-warm-stone); }
+.err-en .label { margin-bottom: 0.75rem; }
