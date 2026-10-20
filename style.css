@@ -689,6 +689,10 @@ body.ready .wm-line .ch, .foot-mark.in .ch { animation-play-state: running; }
 .foot-row { display: flex; justify-content: space-between; align-items: center; gap: 1.25rem 2.5rem; flex-wrap: wrap; padding: 1.5rem var(--gutter) 0; font-size: 0.8125rem; color: var(--color-walnut); }
 .foot-row a:not(.totop) { border-bottom: 1px solid transparent; transition: border-color .3s, color .3s; }
 .foot-row a:not(.totop):hover { color: var(--color-parchment); border-color: currentColor; }
+/* crédit du développeur : ligne discrète tout en bas du pied de page */
+.foot-credit { padding: 0.5rem var(--gutter) 0; font-size: 0.75rem; color: var(--color-walnut); }
+.foot-credit a { border-bottom: 1px solid transparent; transition: border-color .3s, color .3s; }
+.foot-credit a:hover { color: var(--color-parchment); border-color: currentColor; }
 .totop { display: inline-flex; align-items: center; gap: 0.625rem; padding: 0.875rem 0; text-transform: uppercase; color: var(--color-parchment); }
 .ico.up { transform: rotate(-90deg); }
 .totop:hover .ico.up { transform: rotate(-90deg) translateX(0.3125rem); }
