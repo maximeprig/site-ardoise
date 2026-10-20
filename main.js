@@ -659,15 +659,14 @@
   /* ------------------------------------------------------------------
      Go
      ------------------------------------------------------------------ */
-  buildDays();
-  initText();
-  initNav();
-  initCarte();
-  initSea();
-  initScroll();
-  initCursor();
-  updateStatus();
-  setInterval(updateStatus, 30000);
+  // Chaque initialisation est isolée : si l'une échoue (vieux navigateur, élément manquant…),
+  // les autres et le préchargeur continuent, au lieu de laisser la page bloquée derrière lui.
+  [buildDays, initText, initNav, initCarte, initSea, initScroll, initCursor, updateStatus].forEach((fn) => {
+    try { fn(); } catch (e) { console.warn('L’Ardoise : ' + fn.name + ' a échoué', e); }
+  });
+  setInterval(() => { try { updateStatus(); } catch (e) { /* horloge indisponible : on garde le dernier statut */ } }, 30000);
   const y = $('#year'); if (y) y.textContent = new Date().getFullYear();
   preloader();
+  // filet de sécurité : quoi qu'il arrive, le préchargeur ne retient jamais la page plus de 8 secondes
+  setTimeout(() => { if (document.body.classList.contains('is-loading')) { const pl = $('.preloader'); if (pl) pl.remove(); start(); } }, 8000);
 })();
