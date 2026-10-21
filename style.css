@@ -15,6 +15,7 @@
 }
 
 :root {
+  color-scheme: only light; /* site à thème unique : le « mode sombre automatique » des navigateurs ne doit pas teinter le beige en marron */
   --color-parchment: #d8cbb8;
   --color-linen: #bfb4a3;
   --color-warm-stone: #b6ab9c;
