@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="only light">
   <title>L’Ardoise — Restaurant on the harbour of Ouistreham</title>
-  <meta name="description" content="L’Ardoise, restaurant on the harbour of Ouistreham (Calvados, Normandy), 1 place du Général de Gaulle. Open every day from 12:00 to 14:00 and 18:00 to 20:30. Reservations: +33 2 31 97 12 16.">
+  <meta name="description" content="L’Ardoise, restaurant on the harbour of Ouistreham (Calvados, Normandy), 1 place du Général de Gaulle. Open from 12:00 to 14:00 and 18:00 to 20:30, every day except Sunday evenings from 1 October to 31 March. Reservations: +33 2 31 97 12 16.">
   <meta name="theme-color" content="#292622">
 
   <!-- Adresse de référence et version française (pour Google) -->
@@ -18,7 +18,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="L’Ardoise">
   <meta property="og:title" content="L’Ardoise — Restaurant on the harbour of Ouistreham">
-  <meta property="og:description" content="Open every day from 12:00 to 14:00 and 18:00 to 20:30. 1 place du Général de Gaulle, Ouistreham, France.">
+  <meta property="og:description" content="Open from 12:00 to 14:00 and 18:00 to 20:30, closed on Sunday evenings from 1 October to 31 March. 1 place du Général de Gaulle, Ouistreham, France.">
   <meta property="og:url" content="https://lardoise-ouistreham.fr/index-en">
   <meta property="og:locale" content="en_GB">
   <meta property="og:locale:alternate" content="fr_FR">
@@ -37,7 +37,8 @@
   <link rel="stylesheet" href="style.css">
   <link rel="preload" as="image" href="images/hero.jpg" fetchpriority="high">
 
-  <!-- Même fiche qu'index.html : les faits (adresse, tél., coordonnées, horaires) ne changent pas avec la langue. -->
+  <!-- Même fiche qu'index.html : les faits (adresse, tél., coordonnées, horaires) ne changent pas avec la langue.
+       Le dîner du dimanche n'est servi que du 1er avril au 30 septembre : renouveler chaque année validFrom / validThrough. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -56,7 +57,11 @@
       "addressCountry": "FR"
     },
     "geo": { "@type": "GeoCoordinates", "latitude": 49.27912, "longitude": -0.25116 },
-    "openingHours": ["Mo-Su 12:00-14:00", "Mo-Su 18:00-20:30"]
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "12:00", "closes": "14:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "18:00", "closes": "20:30" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "18:00", "closes": "20:30", "validFrom": "2027-04-01", "validThrough": "2027-09-30" }
+    ]
   }
   </script>
 </head>
@@ -149,7 +154,7 @@
               <a class="btn" href="#carte" data-magnet><span data-roll>View the menu</span><svg class="ico"><use href="#arrow"/></svg></a>
               <a class="btn" href="tel:+33231971216" data-magnet aria-label="Reserve by phone on +33 2 31 97 12 16"><span data-roll>Reserve · +33 2 31 97 12 16</span></a>
             </div>
-            <p class="hero-hours" data-reveal="fade" style="--d:2000">Every day<br>12:00 – 14:00 · 18:00 – 20:30</p>
+            <p class="hero-hours" data-reveal="fade" style="--d:2000">Lunch and dinner<br>12:00 – 14:00 · 18:00 – 20:30</p>
           </div>
         </div>
       </div>
@@ -161,7 +166,7 @@
         <div class="mq-set"><span>Ouistreham</span><i></i><span>The harbour</span><i></i><span>Calvados</span><i></i><span>Normandy</span><i></i><span>Lunch &amp; dinner</span><i></i></div>
       </div>
       <div class="mq-row outline" data-mq="1">
-        <div class="mq-set"><span>Starters</span><i></i><span>Mains</span><i></i><span>Desserts</span><i></i><span>Drinks</span><i></i><span>7 days a week</span><i></i></div>
+        <div class="mq-set"><span>Starters</span><i></i><span>Mains</span><i></i><span>Desserts</span><i></i><span>Drinks</span><i></i><span>Wines</span><i></i></div>
       </div>
     </section>
 
@@ -174,12 +179,12 @@
         </div>
 
         <div class="intro-grid">
-          <p class="lead" data-fill>On the harbour of Ouistreham, a table open every day, at lunch and in the evening. Come for lunch just steps from the boats, or dine as the sky changes colour.</p>
+          <p class="lead" data-fill>On the harbour of Ouistreham, a table open at lunch and in the evening. Come for lunch just steps from the boats, or dine as the sky changes colour.</p>
 
           <div class="intro-side">
             <svg class="badge" viewBox="0 0 200 200" aria-hidden="true" data-reveal="scale">
               <defs><path id="circ" d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0"/></defs>
-              <text><textPath href="#circ" textLength="486" lengthAdjust="spacing">OPEN 7/7 • 12:00–14:00 • 18:00–20:30 • OUISTREHAM • </textPath></text>
+              <text><textPath href="#circ" textLength="486" lengthAdjust="spacing">LUNCH &amp; DINNER • 12:00–14:00 • 18:00–20:30 • OUISTREHAM • </textPath></text>
               <use href="#mark" x="76" y="76" width="48" height="48"/>
             </svg>
             <p class="body" data-reveal="up" style="--d:150">1 place du Général de Gaulle, in the heart of the harbour. A brasserie menu, from land and sea — set menus, starters, mains, desserts, drinks and wines — to explore at your own pace.</p>
@@ -198,7 +203,7 @@
             <span class="card-num">02</span>
             <h3 class="card-title">Dinner</h3>
             <p class="card-time">18:00 <em>→</em> 20:30</p>
-            <p class="card-text">Every day, until 20:30.</p>
+            <p class="card-text">Until 20:30, except Sunday evenings from 1 October to 31 March.</p>
           </article>
           <article class="card" data-reveal="up" data-tilt>
             <span class="card-num">03</span>
@@ -301,7 +306,7 @@
 
         <div class="harbor-cap harbor-cap-a">
           <p class="label">03 — The harbour</p>
-          <p class="harbor-line">Lunch and dinner,<br>every day.</p>
+          <p class="harbor-line">Lunch and dinner,<br>on the harbour.</p>
         </div>
         <p class="harbor-cap harbor-cap-b">1 place du Général de Gaulle<br>14150 Ouistreham, France</p>
       </div>
@@ -315,10 +320,10 @@
           <i class="rule" data-reveal="line"></i>
         </div>
         <div class="hours-head">
-          <h2 class="h2" data-split>Open<br>every day</h2>
+          <h2 class="h2" data-split>Open<br>lunch and dinner</h2>
           <div class="hours-status" data-reveal="up" style="--d:200">
             <p class="status status-lg" data-status><i class="dot"></i><span>…</span></p>
-            <p class="body">Two services, lunch and dinner, seven days a week.</p>
+            <p class="body">Two services, lunch and dinner. From 1 October to 31 March, closed on Sunday evenings.</p>
           </div>
         </div>
         <div class="days" id="days"></div>
@@ -442,8 +447,8 @@
           </address>
           <div class="info" data-reveal="up">
             <p class="label">Hours</p>
-            <p class="info-title">Every day</p>
-            <p class="info-text">12:00 – 14:00 &nbsp;·&nbsp; 18:00 – 20:30</p>
+            <p class="info-title">Lunch and dinner</p>
+            <p class="info-text">12:00 – 14:00 &nbsp;·&nbsp; 18:00 – 20:30<br>Closed on Sunday evenings from 1 October to 31 March</p>
           </div>
           <div class="info" data-reveal="up">
             <p class="label">A question?</p>

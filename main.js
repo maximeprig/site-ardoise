@@ -22,6 +22,7 @@
     fr: {
       days: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
       today: 'Aujourd’hui',
+      closedEvening: 'Soir fermé',
       menuOpen: 'Ouvrir le menu',
       menuClose: 'Fermer le menu',
       axisHour: (h) => h + 'h',
@@ -36,6 +37,7 @@
     en: {
       days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
       today: 'Today',
+      closedEvening: 'Evening closed',
       menuOpen: 'Open menu',
       menuClose: 'Close menu',
       axisHour: (h) => String(h),
@@ -60,13 +62,18 @@
   const DAYS = T.days;
   const RANGE = [10 * 60, 23 * 60]; // fenêtre affichée dans la frise
 
+  // Du 1er octobre au 31 mars : pas de dîner le dimanche (jour n° 6, le lundi étant le n° 0)
+  const winter = (month) => month >= 10 || month <= 3;
+  const servicesFor = (day, month) => (day === 6 && winter(month) ? SERVICES.slice(0, 1) : SERVICES);
+
   const fmt = (m) => T.time(Math.floor(m / 60), m % 60);
 
   function parisNow() {
-    const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Paris', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date());
+    const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Paris', weekday: 'short', month: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date());
     const get = (t) => parts.find((p) => p.type === t).value;
     return {
       day: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].indexOf(get('weekday')),
+      month: +get('month'),
       min: (+get('hour')) * 60 + (+get('minute'))
     };
   }
@@ -74,10 +81,10 @@
   /* ------------------------------------------------------------------
      Statut ouvert / fermé + frise des horaires
      ------------------------------------------------------------------ */
-  function statusText(min) {
-    const cur = SERVICES.find((s) => min >= s.start && min < s.end);
+  function statusText(min, services) {
+    const cur = services.find((s) => min >= s.start && min < s.end);
     if (cur) return { open: true, text: T.status.open(fmt(cur.end)) };
-    const next = SERVICES.find((s) => min < s.start);
+    const next = services.find((s) => min < s.start);
     if (next) return { open: false, text: next === SERVICES[0] ? T.status.opensAt(fmt(next.start)) : T.status.reopensAt(fmt(next.start)) };
     return { open: false, text: T.status.opensTomorrow(fmt(SERVICES[0].start)) };
   }
@@ -99,24 +106,28 @@
     });
     host.appendChild(axis);
 
+    const { month } = parisNow();
     DAYS.forEach((name, i) => {
+      const services = servicesFor(i, month);
       const row = document.createElement('div');
       row.className = 'day';
       row.dataset.day = i;
       row.style.setProperty('--r', i);
-      const segs = SERVICES.map((s, k) => `<i class="seg" style="left:${pct(s.start)}%;width:${pct(s.end) - pct(s.start)}%;--k:${k}"></i>`).join('');
+      const segs = services.map((s, k) => `<i class="seg" style="left:${pct(s.start)}%;width:${pct(s.end) - pct(s.start)}%;--k:${k}"></i>`).join('');
+      const times = services.map((s) => `${fmt(s.start)} – ${fmt(s.end)}`);
+      if (services.length < SERVICES.length) times.push(T.closedEvening);
       row.innerHTML = `
         <div class="day-name">${name}<small></small></div>
         <div class="track">${segs}<i class="now"></i></div>
-        <div class="day-times">${SERVICES.map((s) => `${fmt(s.start)} – ${fmt(s.end)}`).join('<br>')}</div>`;
+        <div class="day-times">${times.join('<br>')}</div>`;
       host.appendChild(row);
     });
     io(host, () => host.classList.add('in'), 0.15);
   }
 
   function updateStatus() {
-    const { day, min } = parisNow();
-    const st = statusText(min);
+    const { day, min, month } = parisNow();
+    const st = statusText(min, servicesFor(day, month));
     $$('[data-status]').forEach((el) => {
       el.classList.toggle('is-open', st.open);
       $('span', el).textContent = st.text;
